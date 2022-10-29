@@ -28,6 +28,8 @@ tabsParent.addEventListener('click', (event)=>{
     });
     });
 
+/////
+
 
 let slideIndex = 0;
 
@@ -100,3 +102,31 @@ function openModalScroll() {
 }
 
 window.addEventListener('scroll', openModalScroll)
+
+const forms = document.querySelectorAll("form")
+
+forms.forEach ((item) =>{
+  postData(item)
+})
+
+function postData (form) {
+  form.addEventListener("submit", (e) =>{
+    e.preventDefault()
+
+    const requst = new XMLHttpRequest()
+    requst.open("POST", "server.php")
+    requst.setRequestHeader("Content-type", "application/json")
+
+    const formData = new FormData(form)
+
+    const object = {}
+
+    formData.forEach((item, i)=>{
+      object[i] = item
+    })
+
+    const json = JSON.stringify(object)
+
+    requst.send(json)
+  })
+}
