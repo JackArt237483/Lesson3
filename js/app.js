@@ -28,8 +28,6 @@ tabsParent.addEventListener('click', (event)=>{
     });
     });
 
-/////
-
 
 let slideIndex = 0;
 
